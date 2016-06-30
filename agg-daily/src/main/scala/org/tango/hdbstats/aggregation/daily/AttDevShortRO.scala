@@ -2,7 +2,6 @@ package org.tango.hdbstats.aggregation.daily
 
 import org.apache.spark.{SparkContext, SparkConf}
 import org.apache.spark.sql.SaveMode
-
 import scala.util.matching.Regex
 
 object AttDevShortRO {
@@ -59,7 +58,7 @@ object AttDevShortRO {
     devShortRo.write
       .format("org.apache.spark.sql.cassandra")
       .options(Map( "table" -> "stat_scalar_devshort_ro", "keyspace" -> "hdbtest"))
-      .mode(SaveMode.Overwrite)
+      .mode(SaveMode.Append)
       .save()
 
     sc.stop()
